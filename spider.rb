@@ -5,7 +5,7 @@ class Spider < Formula
   sha256 "ba4a0ceea07d601dc54e2f436ba8b97833c10d5e6584c6d5d35c7952887bc456"
   license "Apache-2.0"
   
-  bottle: unneeded
+  bottle :unneeded
   
   depends_on "dart-lang/dart/dart" => :build
   
