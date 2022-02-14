@@ -5,12 +5,12 @@ class Spider < Formula
   sha256 "f770960148c3b272cd841cbc66004345efd047160802fce44c1afb1371d6e083"
   license "Apache-2.0"
   
-  bottle :unneeded
+#   bottle :unneeded
   
   depends_on "dart-lang/dart/dart" => :build
   
   def install
-    system "pub", "get"
+    system "dart", "pub", "get"
     system "dart", "compile", "exe", "bin/main.dart", "-o", "spider"
     bin.install "spider"
   end
