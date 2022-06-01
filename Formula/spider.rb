@@ -1,8 +1,8 @@
 class Spider < Formula
   desc "small dart library to generate Assets dart code from assets folder."
   homepage "https://github.com/BirjuVachhani/spider"
-  url "https://github.com/BirjuVachhani/spider/archive/2.2.2.tar.gz"
-  sha256 "683e91e5adbdc3764c0f3e5281d933be74b669cb7da5b16d7d4f51c0297401e0"
+  url "https://github.com/BirjuVachhani/spider/archive/3.0.0.tar.gz"
+  sha256 "581409c72fc55abf29f85fdabf1db829599c18a97dda13a57ccc1f342c024b9c"
   license "Apache-2.0"
   
 #   bottle :unneeded
