@@ -18,18 +18,17 @@ jobs:
         run: dart --version
       - uses: actions/checkout@v2
       - name: Extract version
+        id: vars
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.version != ''
-        env:
-          VERSION: ${{ github.event.inputs.version }}
-        run: echo "Extracted Version=$VERSION"
+        run: echo "VERSION=${{ github.event.inputs.version }}" >> $GITHUB_OUTPUT
       - name: Extract version
+        id: vars
         if: github.event_name == 'repository_dispatch' && github.event.client_payload.version != ''
-        env:
-          VERSION: ${{ github.event.client_payload.version }}
-        run: echo "Extracted Version=$VERSION"
+        run: echo "VERSION=${{ github.event.client_payload.version }}" >> $GITHUB_OUTPUT
       - name: Update Formula
         run: |
-          echo "VERSION: $VERSION"
+          export VERSION="${{ steps.vars.outputs.VERSION }}"
+          echo "VERSION=$VERSION"
           SPIDER_MACOS_URL="https://github.com/BirjuVachhani/spider/releases/download/$VERSION/spider-$VERSION-macos.tar.gz"
           curl -L -o spider-$VERSION-macos.tar.gz "$SPIDER_MACOS_URL"
           export SPIDER_MACOS_SHA=`sha256sum spider-$VERSION-macos.tar.gz | cut -d' ' -f1`
