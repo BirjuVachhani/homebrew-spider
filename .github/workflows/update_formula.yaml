@@ -21,10 +21,12 @@ jobs:
         if: github.event_name == 'workflow_dispatch' && github.event.inputs.version != ''
         env:
           VERSION: ${{ github.event.inputs.version }}
+        run: echo "Extracted Version=$VERSION"
       - name: Extract version
         if: github.event_name == 'repository_dispatch' && github.event.client_payload.version != ''
         env:
           VERSION: ${{ github.event.client_payload.version }}
+        run: echo "Extracted Version=$VERSION"
       - name: Update Formula
         run: |
           echo "VERSION: $VERSION"
