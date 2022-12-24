@@ -41,9 +41,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           add: 'Formula/spider.rb'
-          message: Bump up formula version to ${{ github.event.inputs.version }}
-          signoff: true
-
-          
-      
-
+          message: "Bump up formula version to $VERSION"
