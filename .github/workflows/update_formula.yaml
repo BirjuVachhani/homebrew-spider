@@ -1,0 +1,43 @@
+name: Update Formula
+
+on:
+  repository_dispatch:
+    types: [update-formula] # with client_payload.packages
+  workflow_dispatch:
+    inputs:
+      version:
+        required: true
+        default: ''
+
+jobs:
+  update_formula:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dart-lang/setup-dart@v1
+      - name: Dart SDK
+        run: dart --version
+      - uses: actions/checkout@v2
+      - name: Update Formula
+        run: |
+          SPIDER_MACOS_URL="https://github.com/BirjuVachhani/spider/releases/download/${{ github.event.client_payload.version }}/spider-${{ github.event.client_payload.version }}-macos.tar.gz"
+          curl -L -o spider-${{ github.event.client_payload.version }}-macos.tar.gz "$SPIDER_MACOS_URL"
+          export SPIDER_MACOS_SHA=`sha256sum spider-${{ github.event.client_payload.version }}-macos.tar.gz | cut -d' ' -f1`
+          echo "MacOS SHA: $SPIDER_MACOS_SHA"
+          SPIDER_LINUX_URL="https://github.com/BirjuVachhani/spider/releases/download/${{ github.event.client_payload.version }}/spider-${{ github.event.client_payload.version }}-linux-amd64.tar.gz"
+          curl -L -o spider-${{ github.event.client_payload.version }}-linux-amd64.tar.gz "$SPIDER_LINUX_URL"
+          export SPIDER_LINUX_SHA=`sha256sum spider-${{ github.event.client_payload.version }}-linux-amd64.tar.gz | cut -d' ' -f1`
+          echo "Linux SHA: $SPIDER_LINUX_SHA"
+          echo "VERSION: ${{ github.event.client_payload.version }}"
+          dart update_formula.dart "${{ github.event.client_payload.version }}" "$SPIDER_MACOS_SHA" "$SPIDER_LINUX_SHA"
+      - name: Commit & push changes
+        uses: EndBug/add-and-commit@v9
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          add: 'Formula/spider.rb'
+          message: Bump up formula version to ${{ github.event.client_payload.version }}
+          signoff: true
+
+          
+      
+
