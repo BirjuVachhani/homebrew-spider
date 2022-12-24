@@ -40,6 +40,7 @@ jobs:
         uses: EndBug/add-and-commit@v9
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VERSION: ${{ env.VERSION }}
         with:
           add: 'Formula/spider.rb'
           message: "Bump up formula version to ${{ env.VERSION }}"
