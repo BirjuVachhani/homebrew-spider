@@ -5,8 +5,8 @@ class Spider < Formula
   license "Apache-2.0"
 
   if OS.mac?
-    url "https://github.com/BirjuVachhani/spider/releases/download/#{version}/spider-#{version}-macos.tar.gz"
-    sha256 "62bbf050000cfd5feee288b6503537fbc1af389570cde6ba86fe59bd654de332"
+    url "https://github.com/BirjuVachhani/spider/archive/4.2.2.tar.gz"
+    sha256 "e8b728610d7bbcea020ea7e3d03aa3bad15390109fa4dc824139ecebfb4e1523"
   elsif OS.linux?
     url "https://github.com/BirjuVachhani/spider/releases/download/#{version}/spider-#{version}-linux-amd64.tar.gz"
     sha256 "2abc783b402689b63f796d40d7d5eec015ee223c0ef87cf1fa9a553a66daa99c"
