@@ -1,15 +1,15 @@
 class Spider < Formula
-  version "4.2.1"
+  version "4.2.2"
   desc "A small dart library to generate Assets dart code from assets folder."
   homepage "https://github.com/BirjuVachhani/spider"
   license "Apache-2.0"
 
   if OS.mac?
-    url "https://github.com/BirjuVachhani/spider/archive/4.2.2.tar.gz"
-    sha256 "e8b728610d7bbcea020ea7e3d03aa3bad15390109fa4dc824139ecebfb4e1523"
+    url "https://github.com/BirjuVachhani/spider/releases/download/#{version}/spider-#{version}-macos.tar.gz"
+    sha256 "42a6376f6dae40218db999d3b7d8f4dd2abcc2774b477a8320faea1559e8b78e"
   elsif OS.linux?
     url "https://github.com/BirjuVachhani/spider/releases/download/#{version}/spider-#{version}-linux-amd64.tar.gz"
-    sha256 "2abc783b402689b63f796d40d7d5eec015ee223c0ef87cf1fa9a553a66daa99c"
+    sha256 "b6e6d0ae92cd46fd579c37e23cd711b9c81ce012c6bd283b611d28d78f8f0b76"
   end
 
   def install
